@@ -1,0 +1,49 @@
+.signup{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(pink,lightgreen, blue);
+    display: flex;
+    align-items: center;
+    font-family: 'Nunito';
+}
+
+.signup form{
+    margin: 0 auto;
+    width: 100%;
+    max-width:400px;
+    padding: 15px;
+    margin-bottom: 75px;
+}
+
+.signup img{
+    margin-top:70px;
+}
+
+.signup h1{
+    font-size: 2.0em;
+    font-weight: bolder;
+}
+
+.signup input{
+    display: block;
+    width: 100%;
+    margin-left: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-family: 'Arial';
+    border: 1px #181847 solid;
+}
+
+.signup input:focus{
+    outline: none;
+    border-width: 2px;
+    box-sizing: border-box;
+}
+
+.signup button{
+    margin-left: 11px;
+    width: 100%;
+    display: block;
+    cursor: pointer;
+}
