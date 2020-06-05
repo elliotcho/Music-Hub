@@ -5,7 +5,7 @@
     display: flex;
     align-items: center;
     background-size: cover;
-    background-image: url('./Images/concert.jpg');
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('./Images/concert.jpg');
     font-family: 'Nunito';
     color: #ffffff;
     opacity: 0.9;
@@ -19,12 +19,12 @@
 }
 
 .login img{
+    border: solid #646363;
     border-radius: 25%;
 }
 
 .login h1{
-    color: white;
-    font-weight: bolder;
+    font-weight:bold;
 }
 
 .login input{

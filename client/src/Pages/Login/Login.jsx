@@ -16,7 +16,7 @@ class Login extends Component{
 
                     <button className='btn-lg btn-danger ml-2 mb-5'>Login</button>
 
-                    <p className='mt-4 ml-3'>Don't have an account? Sign up here</p>
+                    <p className='mt-5 ml-3'>Don't have an account? Sign up here</p>
                 </form>
             </div>
         )

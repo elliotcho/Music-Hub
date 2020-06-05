@@ -2,7 +2,7 @@
     position: fixed;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(pink,lightgreen, blue);
+    background-image: linear-gradient(rgb(255, 192, 203),rgb(144, 238, 144), rgb(0, 0, 255, 0.5));
     display: flex;
     align-items: center;
     font-family: 'Nunito';
@@ -17,6 +17,8 @@
 }
 
 .signup img{
+    border: solid #646363;
+    border-radius: 25%;
     margin-top:70px;
 }
 
@@ -46,4 +48,16 @@
     width: 100%;
     display: block;
     cursor: pointer;
+}
+
+.signup p{
+    font-size: 1.1em;
+    font-family: 'Arial';
+    cursor: pointer;
+}
+
+.signup p:hover{
+    position: relative;
+    text-decoration: underline;
+    bottom: 5px;
 }
