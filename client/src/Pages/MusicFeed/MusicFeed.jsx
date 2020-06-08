@@ -1,11 +1,16 @@
 import React, {Component} from 'react';
+import MyMusic from './Components/MyMusic';
+import logo from './Images/logo.jpg';
+import './MusicFeed.css'
 
 class MusicFeed extends Component{
     render(){
         return(
             <div className='musicFeed'>
-                <header className='text-center'>
-                    <h1 className='mb-5'>Gugsa Challa</h1>
+                <header className='container-fluid'>
+                    <img src={logo} alt='logo'/>
+                    <h1>Gugsa Challa</h1>
+                    <button><i className='fa fa-sign-out'></i></button>
                 </header>
 
                 <ul className='nav nav-tabs'>
@@ -16,15 +21,15 @@ class MusicFeed extends Component{
 
                 <div className='tab-content'>
                     <section id='trending' className='tab-pane active'>
-                        Trending
+                   
                     </section>
 
                     <section id='recent' className='tab-pane'>
-                        Recent
+                        
                     </section>
 
                     <section id='mymusic' className='tab-pane'>
-                        My Music
+                       <MyMusic/>
                     </section>
                 </div>
             </div>

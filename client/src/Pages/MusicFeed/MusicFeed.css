@@ -1,0 +1,127 @@
+.musicFeed{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgb(255, 192, 203),rgb(144, 238, 144), rgb(0, 0, 255, 0.5));
+}
+
+.musicFeed header{
+    padding-top: 20px;
+    padding-bottom: 10px;
+    background: gray;
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.musicFeed h1{
+    position: relative;
+    font-family:'Nunito';
+    font-weight: bold;
+    text-align: center;
+    font-size: 30px;
+    color: #f8f8f8;
+    bottom: 3px;
+}
+
+.musicFeed img{
+    width: 50px;
+    position: absolute;
+    bottom: 18%;
+    border-radius: 25%;
+    border: solid gray 2px;
+}
+
+.musicFeed button{
+    position: absolute;
+    font-size: 30px;
+    border: none;
+    left: 88%;
+    bottom: 25%;
+    color: white;
+    background: gray;
+    outline: none;
+    cursor: pointer;
+}
+
+.musicFeed button:hover{
+    color: black;
+}
+
+.musicFeed li{
+    width: 25%;
+    font-size: 20px;
+    margin-right: 25px;
+    text-align: center;
+    background: lightgray;
+    border-bottom: none;
+}
+
+.musicFeed li:hover{
+    position: relative;
+    top: 2px;
+}
+
+.musicFeed a{
+    font-family: 'Nunito';
+    color: black;
+}
+
+.myMusic{
+    padding: 20px;
+    background: white;
+    box-sizing: border-box;
+    max-height: 400px;
+}
+
+.myMusic .noSongs{
+    text-align: center;
+    margin: 30px auto;
+    color: black;
+}
+
+.myMusic .newSong{
+    position: relative;
+}
+
+.myMusic label{
+    position: absolute;
+    left: 88%;
+    bottom: 10%;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: 'Nunito';
+    background: orange;
+    cursor: pointer;
+}
+
+.myMusic label:hover{
+    box-shadow: 0 0 5px black;
+}
+
+.myMusic input{
+    visibility: hidden;
+}
+
+@media screen and (min-width: 700px){
+    .musicFeed button{
+        left: 92%;
+    }
+
+    .myMusic label{
+        left: 92%;
+    }
+}
+
+@media screen and (min-width: 992px){
+    .musicFeed button{
+        left: 95%;
+    }
+
+    .myMusic label{
+        left: 95%;
+    }
+}
