@@ -46,6 +46,7 @@ input:focus{
     display: block;
     width: 100%;
     cursor: pointer;
+    outline: none;
 }
 
 .login p{

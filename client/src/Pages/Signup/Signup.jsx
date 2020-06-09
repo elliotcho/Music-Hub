@@ -1,33 +1,61 @@
 import React, {Component} from 'react';
+import {withRouter} from 'react-router-dom';
 import logo from './Images/logo.jpg';
 import './Signup.css';
 
+const axios=require('axios');
+
 class Signup extends Component{
+    constructor(){
+        super();
+        this.toLogin=this.toLogin.bind(this);
+        this.handleSubmit=this.handleSubmit.bind(this);
+    }
+
+    toLogin(){
+        this.props.history.push('/');
+    }
+
+    handleSubmit(e){
+        e.preventDefault();
+
+        const data={
+            firstName: e.target.firstName.value,
+            lastName: e.target.lastName.value,
+            email: e.target.email.value,
+            password: e.target.password.value,
+            confirmPassword: e.target.confirmPassword.value
+        }
+
+        const config={
+            headers: {'content-type': 'application/json'}
+        }
+
+        axios.post('/signup', data, config)
+        .then(()=>console.log("HELLO"));
+    }
+
     render(){
         return(
             <div className='signup text-center text-black'>
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <img src={logo} className='mb-2 ml-2' width='150' height='150' alt='logo'/>
 
                     <h1 className='mt-4 ml-2 mb-5'>Sign up for Music Hub</h1>
 
-                    <input type='text' placeholder='Your First Name Here'/>
-                    
-                    <input type='text' placeholder='Your Last Name Here'/>
-                    
-                    <input type='email' placeholder='Your Email Here'/>
-                    
-                    <input type='password' placeholder='Your password Here'/>
-                    
-                    <input type='password' placeholder='Confirm Password'/>
+                    <input name='firstName' type='text' placeholder='Your First Name Here'/>
+                    <input name ='lastName' type='text' placeholder='Your Last Name Here'/>
+                    <input name='email' type='email' placeholder='Your Email Here'/>
+                    <input name='password' type='password' placeholder='Your password Here'/>
+                    <input name='confirmPassword' type='password' placeholder='Confirm Password'/>
 
                     <button className='btn-lg btn-danger mt-4'>Submit</button>
 
-                    <p className='mt-4 ml-4'>Already have an account? Login here</p>
+                    <p className='mt-4 ml-4' onClick={this.toLogin}>Already have an account? Login here</p>
                 </form>
             </div>
         )
     }
 }
 
-export default Signup;
+export default withRouter(Signup);

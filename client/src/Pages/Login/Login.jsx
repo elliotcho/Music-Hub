@@ -1,8 +1,18 @@
 import React, {Component} from 'react';
+import {withRouter} from 'react-router-dom';
 import logo from './Images/logo.jpg';
 import './Login.css';
 
 class Login extends Component{
+    constructor(){
+        super();
+        this.toSignup=this.toSignup.bind(this);
+    }
+
+    toSignup(){
+        this.props.history.push('/signup');
+    }
+
     render(){
         return(
             <div className='login text-center'>
@@ -16,11 +26,11 @@ class Login extends Component{
 
                     <button className='btn-lg btn-danger ml-2 mb-5'>Login</button>
 
-                    <p className='mt-5 ml-3'>Don't have an account? Sign up here</p>
+                    <p className='mt-5 ml-3' onClick={this.toSignup}>Don't have an account? Sign up here</p>
                 </form>
             </div>
         )
     }
 }
 
-export default Login;
+export default withRouter(Login);
