@@ -66,11 +66,76 @@
     color: black;
 }
 
+.song{
+    padding: 25px;
+}
+
+.song h2{
+   font-family: 'Nunito'; 
+   padding: 10px;
+}
+
+.song .userName{
+    font-size: 15px;
+    font-family: 'Arial';
+    font-weight: normal;
+    color: lightslategray;
+    padding:10px;
+    top: 0;
+    left: 2%;
+}
+
+.song audio{
+    margin-bottom: 15px;
+    outline: none;
+}
+
+.song .trash{
+    position: relative;
+    bottom: 30px;
+    margin-left: 30px;
+    color: gray;
+    font-size: 35px;
+    cursor: pointer;
+}
+
+.song .trash:hover{
+    color: red;
+}
+
+.song .likesContainer{
+    margin-left: 10px;
+}
+
+.song .like{
+    font-size: 40px;
+    cursor: pointer;
+    color: gray;
+}
+
+.song .like:hover{
+    color: blue;
+}
+
+.song .likesCount{
+    position: relative;
+    bottom: 5px;
+    margin-left: 20px;
+    font-family: 'Nunito';
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    cursor: auto;
+}
+
 .myMusic{
+    position: relative;
     padding: 20px;
     background: white;
     box-sizing: border-box;
     max-height: 400px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .myMusic .noSongs{
@@ -79,14 +144,13 @@
     color: black;
 }
 
-.myMusic .newSong{
-    position: relative;
+.myMusic .addSong{
+    position: absolute;
+    top: 5%;
+    left: 85%;
 }
 
 .myMusic label{
-    position: absolute;
-    left: 88%;
-    bottom: 10%;
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -106,13 +170,27 @@
     visibility: hidden;
 }
 
+@media screen and (min-width: 517px){
+    .song audio{
+        margin-bottom: 0;
+    }
+
+    .likesContainer{
+        margin-top: 20px;
+    }
+
+    .song .trash{
+        bottom: 18px;
+    }
+}
+
 @media screen and (min-width: 700px){
     .musicFeed button{
         left: 92%;
     }
 
-    .myMusic label{
-        left: 92%;
+    .myMusic .addSong{
+        left: 82%;
     }
 }
 
@@ -123,5 +201,9 @@
 
     .myMusic label{
         left: 95%;
+    }
+
+    .myMusic .addSong{
+        left: 78%;
     }
 }
