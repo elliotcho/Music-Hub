@@ -22,19 +22,20 @@ class Song extends Component{
                 numLikes: this.props.numLikes
             });
 
-            const config={headers: {'Content-Type': 'application/json'}};
-
-            axios.post('/loadsong', {id: this.props.songId}, config).then(response =>{
-                this.setState({url: URL.createObjectURL(new Blob([response.data]))});
-            });
+           fetch('/loadsong', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({id: this.props.songId})
+           }).then(response => response.blob())
+           .then(obj =>{
+                this.setState({url: URL.createObjectURL(obj)});  
+           });
         });
     }
 
     render(){
         const {songName, ownerName, url, numLikes} =this.state;
-
-        console.log(url);
-
+        
         return(
             <section className='song container'>
                 <h2>
