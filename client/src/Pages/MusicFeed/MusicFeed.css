@@ -130,16 +130,18 @@
     cursor: auto;
 }
 
-.myMusic{
+.trending, .recent, .myMusic{
     position: relative;
     padding: 20px;
     background: white;
     box-sizing: border-box;
     max-height: 400px;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
 }
 
+.trending .noSongs, 
+.recent .noSongs, 
 .myMusic .noSongs{
     text-align: center;
     margin: 30px auto;
@@ -163,7 +165,7 @@
     font-family: 'Nunito';
     background: orange;
     cursor: pointer;
-    outline:
+    outline: none;
 }
 
 .myMusic label:hover{

@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import Trending from './Components/Trending';
+import Recent from './Components/Recent';
 import MyMusic from './Components/MyMusic';
 import logo from './Images/logo.jpg';
 import './MusicFeed.css'
@@ -55,11 +57,11 @@ class MusicFeed extends Component{
 
                 <div className='tab-content'>
                     <section id='trending' className='tab-pane active'>
-                   
+                        <Trending/>
                     </section>
 
                     <section id='recent' className='tab-pane'>
-                        
+                        <Recent/>
                     </section>
 
                     <section id='mymusic' className='tab-pane'>

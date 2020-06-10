@@ -1,5 +1,7 @@
 import React from 'react';
 
+import waka from './waka.mp3';
+
 function Song(){
     return(
         <section className='song container'>
