@@ -34,6 +34,7 @@ class MyMusic extends Component{
         const formData=new FormData();
 
         formData.append('ownerId', this.props.userId);
+        formData.append('originalName', audioFile.name)
         formData.append('audio', audioFile);
 
         const config={headers: {'content-type': 'multipart/form-data'}};
@@ -42,11 +43,15 @@ class MyMusic extends Component{
     }
 
     render(){
-        const songs=this.state.songs.map(song =>{
+        /*const songs=this.state.songs.map(song =>{
             <Song 
                   file={song.file}
             />
-        });
+        });*/
+
+        const songs=this.state.songs.map(song =>
+            <Song file={song.file}/>
+        );
 
         const noSongs=<h1 className='noSongs'>No Music Available</h1>
 
