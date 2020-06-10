@@ -4,12 +4,46 @@ import logo from './Images/logo.jpg';
 import './MusicFeed.css'
 
 class MusicFeed extends Component{
+    constructor(){
+        super();
+
+        this.state={
+            firstName: '',
+            lastName: '',
+            songs: []
+        }
+    }
+
+    componentDidMount(){
+        console.log(this.props.userInfo);
+
+        if(JSON.stringify(this.props.userInfo)!==JSON.stringify({})){
+            this.setState({
+                firstName: this.props.userInfo.firstName,
+                lastName: this.props.userInfo.lastName,
+                songs: this.props.userInfo.songs
+            }, ()=>{
+                window.localStorage.setItem('state', JSON.stringify(this.state));
+            }); 
+        }
+
+        else{
+            this.setState({
+                ...JSON.parse(window.localStorage.getItem('state'))
+            }, ()=>{
+                window.localStorage.setItem('state', JSON.stringify(this.state));
+            }); 
+        }
+    }
+
     render(){
+        const {firstName, lastName}=this.state;
+
         return(
             <div className='musicFeed'>
                 <header className='container-fluid'>
                     <img src={logo} alt='logo'/>
-                    <h1>Gugsa Challa</h1>
+                    <h1>{firstName} {lastName}</h1>
                     <button><i className='fa fa-sign-out'></i></button>
                 </header>
 

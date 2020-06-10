@@ -32,7 +32,18 @@ class Signup extends Component{
         }
 
         axios.post('/signup', data, config)
-        .then(()=>console.log("HELLO"));
+        .then(response => {
+            const {msg}=response.data;
+
+            if(msg==='Success'){
+                this.props.getUserInfo(response.data);
+                this.props.history.push('/musicfeed');
+            }
+
+            else{
+                alert(msg);
+            }
+        });
     }
 
     render(){
@@ -43,11 +54,45 @@ class Signup extends Component{
 
                     <h1 className='mt-4 ml-2 mb-5'>Sign up for Music Hub</h1>
 
-                    <input name='firstName' type='text' placeholder='Your First Name Here'/>
-                    <input name ='lastName' type='text' placeholder='Your Last Name Here'/>
-                    <input name='email' type='email' placeholder='Your Email Here'/>
-                    <input name='password' type='password' placeholder='Your password Here'/>
-                    <input name='confirmPassword' type='password' placeholder='Confirm Password'/>
+                    <input name='firstName' 
+                           type='text' 
+                           placeholder='Your First Name Here'
+                           minLength='1'
+                           maxLength='32'
+                           required={true}
+                    />
+                    
+                    <input name ='lastName' 
+                           type='text' 
+                           placeholder='Your Last Name Here'
+                           minLength='1'
+                           maxLength='32'
+                           required={true}
+                    />
+                    
+                    <input name='email' 
+                           type='email' 
+                           placeholder='Your Email Here'
+                           minLength='1'
+                           maxLength='50'
+                           required={true}
+                    />
+
+                    <input name='password' 
+                           type='password' 
+                           placeholder='Your password Here'
+                           minLength='1'
+                           maxLength='50'
+                           required={true}
+                    />
+
+                    <input name='confirmPassword' 
+                           type='password' 
+                           placeholder='Confirm Password'
+                           minLength='1'
+                           maxLength='50'
+                           required={true}
+                    />
 
                     <button className='btn-lg btn-danger mt-4'>Submit</button>
 
