@@ -33,10 +33,10 @@ class Signup extends Component{
 
         axios.post('/signup', data, config)
         .then(response => {
-            const {msg}=response.data;
+            const {msg, _doc}=response.data;
 
             if(msg==='Success'){
-                this.props.getUserInfo(response.data);
+                this.props.getUserInfo(_doc);
                 this.props.history.push('/musicfeed');
             }
 

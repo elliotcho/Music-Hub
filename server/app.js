@@ -21,7 +21,8 @@ app.use(bodyParser.json());
 app.use(express.static('../client/build'));
 
 const {
-    signup
+    signup,
+    login
 }=require('./handlers/users');
 
 app.get('/', (req, res)=>{
@@ -29,5 +30,6 @@ app.get('/', (req, res)=>{
 });
 
 app.post('/signup', signup);
+app.post('/login', login);
 
 app.listen(3000);

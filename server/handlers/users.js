@@ -27,3 +27,15 @@ exports.signup= (req ,res)=>{
        }
    });
 }
+
+exports.login=(req, res)=>{
+    User.findOne({email: req.body.email}).then(result =>{
+        if(result===null ||  req.body.password !== result.password){
+            res.json({msg: 'Email or password is incorrect'});
+        }
+
+        else{
+            res.json({...result, msg: 'Success'});
+        }
+    });
+}
