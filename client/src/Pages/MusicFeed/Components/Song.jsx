@@ -2,11 +2,11 @@ import React from 'react';
 
 import waka from './waka.mp3';
 
-function Song(){
+function Song(props){
     return(
         <section className='song container'>
             <h2>
-                Waka
+                {Waka}
                 <span className='userName'>Gugsa</span>
             </h2>
 

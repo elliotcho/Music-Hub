@@ -25,11 +25,17 @@ const {
     login
 }=require('./handlers/users');
 
+const{
+    getUserSongs
+}=require('./handlers/songs');
+
 app.get('/', (req, res)=>{
     res.sendFile('../client/build/index.html');
 });
 
 app.post('/signup', signup);
 app.post('/login', login);
+
+app.post('/usersongs', getUserSongs);
 
 app.listen(3000);

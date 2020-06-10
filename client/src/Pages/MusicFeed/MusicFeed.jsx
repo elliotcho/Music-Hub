@@ -10,20 +10,18 @@ class MusicFeed extends Component{
         super();
 
         this.state={
+            userId: '',
             firstName: '',
             lastName: '',
-            songs: []
         }
     }
 
     componentDidMount(){
-        console.log(this.props.userInfo);
-
         if(JSON.stringify(this.props.userInfo)!==JSON.stringify({})){
             this.setState({
+                userId: this.props.userInfo._id,
                 firstName: this.props.userInfo.firstName,
-                lastName: this.props.userInfo.lastName,
-                songs: this.props.userInfo.songs
+                lastName: this.props.userInfo.lastName
             }, ()=>{
                 window.localStorage.setItem('state', JSON.stringify(this.state));
             }); 
@@ -39,7 +37,7 @@ class MusicFeed extends Component{
     }
 
     render(){
-        const {firstName, lastName}=this.state;
+        const {firstName, lastName, userId}=this.state;
 
         return(
             <div className='musicFeed'>
@@ -65,7 +63,7 @@ class MusicFeed extends Component{
                     </section>
 
                     <section id='mymusic' className='tab-pane'>
-                       <MyMusic/>
+                       <MyMusic userId={userId}/>
                     </section>
                 </div>
             </div>
