@@ -1,17 +1,20 @@
 import React, {Component} from 'react';
+import Song from './Song';
 
 const axios=require('axios');
 
 class MyMusic extends Component{
     constructor(){
         super();
+
         this.state={
-            userId: '',
             songs: []
         }
+
+        this.handleChange=this.handleChange.bind(this);
     }
 
-    componentDidMount(){
+    /*componentDidMount(){
         this.setState({}, ()=>{
             const {userId}=this.props;
 
@@ -23,10 +26,27 @@ class MyMusic extends Component{
                 this.setState({songs: response.data.songs});
             });
         });
+    }*/
+
+    handleChange(e){
+        const audioFile=e.target.files[0];
+
+        const formData=new FormData();
+
+        formData.append('ownerId', this.props.userId);
+        formData.append('audio', audioFile);
+
+        const config={headers: {'content-type': 'multipart/form-data'}};
+
+        axios.post('/addsong', formData, config).then(()=>{window.location.reload()});
     }
 
     render(){
-        const {songs}=this.state;
+        const songs=this.state.songs.map(song =>{
+            <Song 
+                  file={song.file}
+            />
+        });
 
         const noSongs=<h1 className='noSongs'>No Music Available</h1>
 
@@ -36,7 +56,11 @@ class MyMusic extends Component{
 
                 <section className='addSong'>
                     <label htmlFor='upload'>+</label>
-                    <input id='upload' type='file' accept='mp3'/>
+                    <input id='upload' 
+                           onChange={this.handleChange} 
+                           type='file'
+                           accept='mp3'
+                    />
                 </section>
             </div>
         )
