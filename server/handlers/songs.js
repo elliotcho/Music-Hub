@@ -3,9 +3,40 @@ const {
     Song
 }=require('../dbschemas');
 
-exports.getUserSongs=(req, res)=>{
+
+exports.loadSong=(path) => (req, res) =>{
+    User.find({}).then(result =>{
+       let fileName;
+       let found=false;
+
+       for(let i=0;i<result.length;i++){
+            for(let j=0;j<result[i].songs.length;j++){
+                let song=result[i].songs[j];
+
+                if(song._id==req.body.id){
+                    found=true;
+                    fileName=song.storageName;
+                    break;
+                }
+            }
+
+            if(found){
+                break;
+            }
+       }
+
+       res.sendFile(path.join(__dirname, '../', `/audio/${fileName}`));
+    });
+}
+
+exports.getUserSongs = (req, res)=>{
     User.findOne({_id:req.body.userId}).then(result =>{
-        res.json({songs: result.songs});
+        const songs=result.songs.map(song =>{
+            song.ownerName=result.firstName;
+            return song;
+        });
+
+        res.json({songs});
     });
 }
 

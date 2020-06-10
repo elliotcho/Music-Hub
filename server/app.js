@@ -40,7 +40,8 @@ const {
 
 const{
     getUserSongs,
-    addSong
+    addSong,
+    loadSong
 }=require('./handlers/songs');
 
 app.get('/', (req, res)=>{
@@ -50,6 +51,7 @@ app.get('/', (req, res)=>{
 app.post('/signup', signup);
 app.post('/login', login);
 
+app.post('/loadsong', loadSong(path));
 app.post('/usersongs', getUserSongs);
 app.post('/addsong', addSong(path, upload));
 

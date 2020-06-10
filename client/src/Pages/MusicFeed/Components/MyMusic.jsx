@@ -14,7 +14,7 @@ class MyMusic extends Component{
         this.handleChange=this.handleChange.bind(this);
     }
 
-    /*componentDidMount(){
+    componentDidMount(){
         this.setState({}, ()=>{
             const {userId}=this.props;
 
@@ -26,7 +26,7 @@ class MyMusic extends Component{
                 this.setState({songs: response.data.songs});
             });
         });
-    }*/
+    }
 
     handleChange(e){
         const audioFile=e.target.files[0];
@@ -43,14 +43,14 @@ class MyMusic extends Component{
     }
 
     render(){
-        /*const songs=this.state.songs.map(song =>{
-            <Song 
-                  file={song.file}
-            />
-        });*/
-
         const songs=this.state.songs.map(song =>
-            <Song file={song.file}/>
+            <Song 
+                key={song._id}
+                songId={song._id}
+                songName={song.originalName}
+                ownerName={song.ownerName}
+                numLikes={song.likedBy.length}
+            />
         );
 
         const noSongs=<h1 className='noSongs'>No Music Available</h1>
