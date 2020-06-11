@@ -69,7 +69,25 @@ class Song extends Component{
     }
 
     handleLike(e){
-        console.log(e.target.style.color);
+        let {numLikes, songId, ownerId, userId}=this.state;
+
+        let action;
+
+        if(e.target.style.color==='#0000FE'){
+            this.setState({likeColor: '#0000FF', numLikes:numLikes+1});
+            action='like';
+        }
+
+        else{
+            this.setState({likeColor: 'gray', numLikes:numLikes+1});
+            action='unlike';
+        }
+
+        const data={action, songId, ownerId, userId}
+        const config={headers: {'Content-Type': 'application/json'}};
+
+        axios.post('/handlelikes', data, config)
+        .then(response => {});
     }
 
     render(){

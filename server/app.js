@@ -43,6 +43,7 @@ const{
     loadSong,
     addSong,
     deleteSong,
+    handleLikes,
     getUserSongs
 }=require('./handlers/songs');
 
@@ -55,7 +56,8 @@ app.post('/login', login);
 
 app.post('/addsong', addSong(path, upload));
 app.post('/loadsong', loadSong(path));
-app.post('/deletesong', deleteSong(fs, path))
+app.post('/deletesong', deleteSong(fs, path));
+app.post('/handlelikes', handleLikes);
 app.post('/usersongs', getUserSongs);
 
 app.listen(3000);

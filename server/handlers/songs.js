@@ -106,7 +106,7 @@ exports.handleLikes=(req, res) =>{
 
                     if(like==req.body.userId){
                         found=true;
-                        color='blue';
+                        color='#0000FF';
                         break;
                     }
                 }
@@ -115,6 +115,48 @@ exports.handleLikes=(req, res) =>{
             }
 
             res.json({color});
+        });
+    }
+
+    else if(req.body.action==='like'){
+        User.findOne({_id: req.body.ownerId}).then(result =>{
+            for(let i=0;i<result.songs.length;i++){
+                let song=result[i];
+
+                if(song._id==req.body.songId){
+                    song.likedBy.push(req.body.userId);
+                    break;
+                }
+            }
+
+            res.json({msg: 'Success'});
+        });
+    }
+
+    else{
+        User.findOne({_id: req.body.ownerId}).then(result =>{
+            found=false;
+            const songs=result.songs;
+
+            for(let i=0;i<songs.length;i++){
+                if(songs[i]._id!=req.body.songId){continue;}
+
+                for(let j=0;j<songs[i].likedBy.length;j++){
+                    if(songs[i].likedBy[j]==req.body.userId){
+                        found=true;
+                        
+                        songs[i].likedBy.splice(j, 1);
+
+                        User.updateOne({_id: req.body.ownerId}, {songs}).then(()=>{});
+
+                        break;
+                    }
+                }
+
+                if(found){break;}
+            }
+
+            res.json({msg: 'Success'});
         });
     }
 }
