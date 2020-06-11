@@ -26,6 +26,31 @@ exports.loadSong=(path) => (req, res) =>{
     });
 }
 
+exports.addSong=(path, upload) => (req, res)=>{
+    upload(req, res, (err)=>{
+        if(err){
+            console.log(err);
+        }
+
+        User.findOne({_id: req.body.ownerId}).then(result =>{
+            const userSongs=result.songs;
+
+            userSongs.push(new Song({
+                originalName: path.parse(req.body.originalName).name,
+                storageName: req.file.filename,
+                ownerId: req.body.ownerId,
+                date: Date.now(),
+                likedBy: []
+            }));
+
+            User.updateOne(
+                {_id: result._id},
+                {songs: userSongs}
+            ).then(()=>{res.json({msg: 'Success'})});
+        });
+    });
+}
+
 exports.deleteSong=(fs, path) => (req, res)=>{
     User.find({}).then(result =>{
         let found=false;
@@ -64,6 +89,36 @@ exports.deleteSong=(fs, path) => (req, res)=>{
     });
 }
 
+exports.handleLikes=(req, res) =>{
+    if(req.body.action==='check'){
+        User.findOne({_id: req.body.ownerId}).then(result => {
+            let color='gray';
+            let found=false;
+
+            for(let i=0;i<result.songs.length;i++){
+                let song=result.songs[i];
+
+                if(song._id!=req.body.songId){continue;}
+
+                for(let j=0;j<song.likedBy.length;j++){
+                
+                    let like=song.likedBy[j];
+
+                    if(like==req.body.userId){
+                        found=true;
+                        color='blue';
+                        break;
+                    }
+                }
+
+                if(found){break;}
+            }
+
+            res.json({color});
+        });
+    }
+}
+
 exports.getUserSongs = (req, res)=>{
     User.findOne({_id:req.body.userId}).then(result =>{
         result.songs.sort((a, b) => b.date-a.date);
@@ -75,30 +130,5 @@ exports.getUserSongs = (req, res)=>{
         });
 
         res.json({songs});
-    });
-}
-
-exports.addSong=(path, upload) => (req, res)=>{
-    upload(req, res, (err)=>{
-        if(err){
-            console.log(err);
-        }
-
-        User.findOne({_id: req.body.ownerId}).then(result =>{
-            const userSongs=result.songs;
-
-            userSongs.push(new Song({
-                originalName: path.parse(req.body.originalName).name,
-                storageName: req.file.filename,
-                ownerId: req.body.ownerId,
-                date: Date.now(),
-                likedBy: []
-            }));
-
-            User.updateOne(
-                {_id: result._id},
-                {songs: userSongs}
-            ).then(()=>{res.json({msg: 'Success'})});
-        });
     });
 }

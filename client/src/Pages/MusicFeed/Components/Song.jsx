@@ -7,8 +7,9 @@ class Song extends Component{
         super();
 
         this.state={
-            userId: '',
             songId: '',
+            userId: '',
+            ownerId: '',
             songName: '',
             ownerName: '',
             url: '',
@@ -22,12 +23,17 @@ class Song extends Component{
 
     componentDidMount(){
         this.setState({}, ()=>{
+            const {
+                songId, 
+                userId, 
+                ownerId, 
+                songName, 
+                ownerName, 
+                numLikes
+            }=this.props;
+
             this.setState({
-                userId: this.props.userId,
-                songId: this.props.songId,
-                songName: this.props.songName,
-                ownerName: this.props.ownerName,
-                numLikes: this.props.numLikes
+                songId, userId, ownerId, songName, ownerName, numLikes
             });
 
            fetch('/loadsong', {
@@ -37,6 +43,13 @@ class Song extends Component{
            }).then(response => response.blob())
            .then(obj =>{
                 this.setState({url: URL.createObjectURL(obj)});  
+           });
+
+           const config={headers: {'Content-Type': 'application/json'}}
+
+           axios.post('/handlelikes', {action:'check', userId, ownerId, songId}, config)
+           .then(response => {
+                this.setState({likeColor: response.data.color});
            });
         });
     }
