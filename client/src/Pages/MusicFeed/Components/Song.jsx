@@ -12,8 +12,12 @@ class Song extends Component{
             songName: '',
             ownerName: '',
             url: '',
-            numLikes: 0
+            numLikes: 0, 
+            likeColor: 'gray'
         }
+
+        this.handleMouseLeave=this.handleMouseLeave.bind(this);
+        this.handleLike=this.handleLike.bind(this);
     }
 
     componentDidMount(){
@@ -37,8 +41,35 @@ class Song extends Component{
         });
     }
 
+    handleMouseOver(e){
+        if(e.target.style.color==='gray'){
+            e.target.style.color='#0000FE';
+        }
+
+        else{
+            e.target.style.color='#0000FF';
+        }
+    }
+
+    handleMouseLeave(e){
+        e.target.style.color=this.state.likeColor;
+    }
+
+    handleLike(e){
+        console.log(e.target.style.color);
+    }
+
     render(){
-        const {songId, userId, ownerId, songName, ownerName, url, numLikes} =this.state;
+        const {
+               songId, 
+               userId, 
+               ownerId, 
+               songName, 
+               ownerName, 
+               url, 
+               numLikes, 
+               likeColor
+        } =this.state;
         
         return(
             <section className='song container'>
@@ -57,7 +88,12 @@ class Song extends Component{
                 </i>
 
                 <section className='likesContainer'>
-                    <i className="fa like">
+                    <i className="fa like" 
+                        onClick={this.handleLike} 
+                        onMouseOver={this.handleMouseOver}
+                        onMouseLeave={this.handleMouseLeave}
+                        style={{color: likeColor}}
+                    >
                         &#xf087;           
                     </i>
 

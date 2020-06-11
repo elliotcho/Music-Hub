@@ -111,12 +111,16 @@
 .song .like{
     font-size: 40px;
     cursor: pointer;
-    color: gray;
     outline: none;
 }
 
-.song .like:hover{
-    color: blue;
+.song .like, .song .trash{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none; 
+    -khtml-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none; 
 }
 
 .song .likesCount{
