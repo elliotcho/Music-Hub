@@ -7,6 +7,7 @@ class Song extends Component{
         super();
 
         this.state={
+            userId: '',
             songId: '',
             songName: '',
             ownerName: '',
@@ -18,6 +19,7 @@ class Song extends Component{
     componentDidMount(){
         this.setState({}, ()=>{
             this.setState({
+                userId: this.props.userId,
                 songId: this.props.songId,
                 songName: this.props.songName,
                 ownerName: this.props.ownerName,
@@ -49,7 +51,7 @@ class Song extends Component{
 
                 <i className="fa trash" 
                    onClick={()=>{this.props.deleteSong(songId)}}
-                   style={userId===ownerId? {visibility: 'hidden'}: {visibility: 'visible'}}
+                   style={userId==ownerId? {visibility: 'hidden'}: {visibility: 'visible'}}
                 >
                     &#xf014;
                 </i>

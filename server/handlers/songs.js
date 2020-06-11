@@ -66,6 +66,8 @@ exports.deleteSong=(fs, path) => (req, res)=>{
 
 exports.getUserSongs = (req, res)=>{
     User.findOne({_id:req.body.userId}).then(result =>{
+        result.songs.sort((a, b) => b.date-a.date);
+
         const songs=result.songs.map(song =>{
             const modified={...song._doc};
             modified.ownerName=result.firstName;
