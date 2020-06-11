@@ -71,8 +71,10 @@
 }
 
 .song h2{
+   display: inline-block;
+   max-width: 300px;
    font-family: 'Nunito'; 
-   padding: 10px;
+   padding-left: 5px;
 }
 
 .song .userName{
@@ -81,8 +83,7 @@
     font-weight: normal;
     color: lightslategray;
     padding:10px;
-    top: 0;
-    left: 2%;
+    margin-bottom: 10px;
 }
 
 .song audio{
@@ -139,7 +140,7 @@
     padding: 20px;
     background: white;
     box-sizing: border-box;
-    max-height: 400px;
+    max-height: 600px;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -153,6 +154,7 @@
 }
 
 .myMusic .addSong{
+    z-index: 1;
     position: absolute;
     top: 5%;
     left: 85%;

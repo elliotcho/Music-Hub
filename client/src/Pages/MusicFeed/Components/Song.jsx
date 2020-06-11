@@ -97,19 +97,17 @@ class Song extends Component{
                numLikes, 
                likeColor
         } =this.state;
-        
+
         return(
             <section className='song container'>
-                <h2>
-                    {songName}
-                    <span className='userName'>{ownerName}</span>
-                </h2>
+                <h2>{songName}</h2>
+                <div className='userName'>{ownerName}</div>
 
                 <audio controls='controls' src={url} type='audio/mpeg'/> 
 
                 <i className="fa trash" 
                    onClick={()=>{this.props.deleteSong(songId)}}
-                   style={userId!=ownerId? {visibility: 'hidden'}: {visibility: 'visible'}}
+                   style={userId!==ownerId? {visibility: 'hidden'}: {visibility: 'visible'}}
                 >
                     &#xf014;
                 </i>

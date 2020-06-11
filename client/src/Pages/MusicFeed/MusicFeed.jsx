@@ -51,7 +51,9 @@ class MusicFeed extends Component{
             <div className='musicFeed'>
                 <header className='container-fluid'>
                     <img src={logo} alt='logo'/>
+                    
                     <h1>{firstName} {lastName}</h1>
+                    
                     <button onClick={this.logout}><i className='fa fa-sign-out'></i></button>
                 </header>
 

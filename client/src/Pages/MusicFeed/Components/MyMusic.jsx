@@ -89,7 +89,7 @@ class MyMusic extends Component{
         return(
             <div className='myMusic'>
                 {songs.length===0? noSongs: songs}
-
+            
                 <section className='addSong' style={userId? {display: 'block'}: {display: 'none'}}>
                     <label htmlFor='upload'>+</label>
                     <input id='upload' 
