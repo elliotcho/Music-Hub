@@ -36,7 +36,7 @@ class Song extends Component{
     }
 
     render(){
-        const {songId, songName, ownerName, url, numLikes} =this.state;
+        const {songId, userId, ownerId, songName, ownerName, url, numLikes} =this.state;
         
         return(
             <section className='song container'>
@@ -47,7 +47,10 @@ class Song extends Component{
 
                 <audio controls='controls' src={url} type='audio/mpeg'/> 
 
-                <i className="fa trash" onClick={()=>{this.props.deleteSong(songId)}}>
+                <i className="fa trash" 
+                   onClick={()=>{this.props.deleteSong(songId)}}
+                   style={userId===ownerId? {visibility: 'hidden'}: {visibility: 'visible'}}
+                >
                     &#xf014;
                 </i>
 

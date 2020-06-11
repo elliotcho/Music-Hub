@@ -8,6 +8,7 @@ class MyMusic extends Component{
         super();
 
         this.state={
+            userId: '',
             songs: []
         }
 
@@ -24,7 +25,10 @@ class MyMusic extends Component{
             
             axios.post('/usersongs', data, config)
             .then(response => {
-                this.setState({songs: response.data.songs});
+                this.setState({
+                    userId: this.props.userId,
+                    songs: response.data.songs
+                });
             });
         });
     }
@@ -70,6 +74,8 @@ class MyMusic extends Component{
             <Song 
                 key={song._id}
                 songId={song._id}
+                userId={this.state.userId}
+                ownerId={song.ownerId}
                 songName={song.originalName}
                 ownerName={song.ownerName}
                 numLikes={song.likedBy.length}
