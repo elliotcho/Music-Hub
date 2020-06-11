@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {withRouter} from 'react-router-dom';
 import Trending from './Components/Trending';
 import Recent from './Components/Recent';
 import MyMusic from './Components/MyMusic';
@@ -14,6 +15,8 @@ class MusicFeed extends Component{
             firstName: '',
             lastName: '',
         }
+
+        this.logout=this.logout.bind(this);
     }
 
     componentDidMount(){
@@ -36,6 +39,11 @@ class MusicFeed extends Component{
         }
     }
 
+    logout(){
+        localStorage.clear();
+        window.location.href='/';
+    }
+
     render(){
         const {firstName, lastName, userId}=this.state;
 
@@ -44,7 +52,7 @@ class MusicFeed extends Component{
                 <header className='container-fluid'>
                     <img src={logo} alt='logo'/>
                     <h1>{firstName} {lastName}</h1>
-                    <button><i className='fa fa-sign-out'></i></button>
+                    <button onClick={this.logout}><i className='fa fa-sign-out'></i></button>
                 </header>
 
                 <ul className='nav nav-tabs'>
@@ -71,4 +79,4 @@ class MusicFeed extends Component{
     }
 }
 
-export default MusicFeed;
+export default withRouter(MusicFeed);

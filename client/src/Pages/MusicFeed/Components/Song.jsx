@@ -56,11 +56,7 @@ class Song extends Component{
 
     handleMouseOver(e){
         if(e.target.style.color==='gray'){
-            e.target.style.color='#0000FE';
-        }
-
-        else{
-            e.target.style.color='#0000FF';
+            e.target.style.color='rgb(0, 0, 254)';
         }
     }
 
@@ -73,13 +69,13 @@ class Song extends Component{
 
         let action;
 
-        if(e.target.style.color==='#0000FE'){
-            this.setState({likeColor: '#0000FF', numLikes:numLikes+1});
+        if(e.target.style.color==='rgb(0, 0, 254)'){
+            this.setState({likeColor: 'blue', numLikes:numLikes+1});
             action='like';
         }
 
         else{
-            this.setState({likeColor: 'gray', numLikes:numLikes+1});
+            this.setState({likeColor: 'gray', numLikes:numLikes-1});
             action='unlike';
         }
 
@@ -87,7 +83,7 @@ class Song extends Component{
         const config={headers: {'Content-Type': 'application/json'}};
 
         axios.post('/handlelikes', data, config)
-        .then(response => {});
+        .then(()=> {});
     }
 
     render(){

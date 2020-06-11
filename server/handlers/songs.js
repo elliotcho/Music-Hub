@@ -120,11 +120,14 @@ exports.handleLikes=(req, res) =>{
 
     else if(req.body.action==='like'){
         User.findOne({_id: req.body.ownerId}).then(result =>{
-            for(let i=0;i<result.songs.length;i++){
-                let song=result[i];
+            const songs=result.songs;
 
-                if(song._id==req.body.songId){
-                    song.likedBy.push(req.body.userId);
+            for(let i=0;i<songs.length;i++){
+                if(songs[i]._id==req.body.songId){
+                    songs[i].likedBy.push(req.body.userId);
+
+                    User.updateOne({_id: req.body.ownerId}, {songs}).then(()=>{});
+
                     break;
                 }
             }
