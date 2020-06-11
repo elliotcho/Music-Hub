@@ -63,11 +63,11 @@ class MusicFeed extends Component{
 
                 <div className='tab-content'>
                     <section id='trending' className='tab-pane'>
-                        <Trending/>
+                        <Trending userId={userId}/>
                     </section>
 
                     <section id='recent' className='tab-pane'>
-                        <Recent/>
+                        <Recent userId={userId}/>
                     </section>
 
                     <section id='mymusic' className='tab-pane active'>

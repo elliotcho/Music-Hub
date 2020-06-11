@@ -8,7 +8,7 @@ class MyMusic extends Component{
         super();
 
         this.state={
-            userId: '',
+            userId: null,
             songs: []
         }
 
@@ -25,9 +25,10 @@ class MyMusic extends Component{
             
             axios.post('/usersongs', data, config)
             .then(response => {
+                const {songs} =response.data;
+
                 this.setState({
-                    userId: this.props.userId,
-                    songs: response.data.songs
+                    userId, songs
                 });
             });
         });
@@ -47,7 +48,7 @@ class MyMusic extends Component{
             }
         }
 
-        this.setState({songs: songs});
+        this.setState({songs});
 
         axios.post('/deletesong', {id: id}, {headers: {'Content-Type': 'application/json'}})
         .then(()=>{});
@@ -68,11 +69,13 @@ class MyMusic extends Component{
     }
 
     render(){
+        const {userId}=this.state;
+
         const songs=this.state.songs.map(song =>{
             return (<Song 
                         key={song._id}
                         songId={song._id}
-                        userId={this.state.userId}
+                        userId={userId}
                         ownerId={song.ownerId}
                         songName={song.originalName}
                         ownerName={song.ownerName}
@@ -87,7 +90,7 @@ class MyMusic extends Component{
             <div className='myMusic'>
                 {songs.length===0? noSongs: songs}
 
-                <section className='addSong'>
+                <section className='addSong' style={userId? {display: 'block'}: {display: 'none'}}>
                     <label htmlFor='upload'>+</label>
                     <input id='upload' 
                            onChange={this.handleChange} 

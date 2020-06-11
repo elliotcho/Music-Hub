@@ -177,3 +177,7 @@ exports.getUserSongs = (req, res)=>{
         res.json({songs});
     });
 }
+
+exports.getRecentSongs =(req, res) =>{
+    
+}
