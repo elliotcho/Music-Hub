@@ -13,8 +13,7 @@ class Song extends Component{
             songName: '',
             ownerName: '',
             url: '',
-            numLikes: 0, 
-            likeColor: 'gray'
+            numLikes: 0
         }
 
         this.handleMouseLeave=this.handleMouseLeave.bind(this);

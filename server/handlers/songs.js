@@ -106,7 +106,7 @@ exports.handleLikes=(req, res) =>{
 
                     if(like==req.body.userId){
                         found=true;
-                        color='#0000FF';
+                        color='blue';
                         break;
                     }
                 }
