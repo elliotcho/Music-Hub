@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
+import Song from './Song';
 
-const axios=require('axois');
+const axios=require('axios');
 
 class Trending extends Component{
     constructor(){

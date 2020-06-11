@@ -179,5 +179,41 @@ exports.getUserSongs = (req, res)=>{
 }
 
 exports.getRecentSongs =(req, res) =>{
-    
+    User.find({}).then(result =>{
+        const songs=[];
+
+        for(let i=0;i<result.length;i++){
+            for(let j=0;j<result[i].songs.length;j++){
+                let song=result[i].songs[j];
+                
+                let modified={...song._doc};
+                modified.ownerName=result[i].firstName;
+                songs.push(modified);
+            }
+        }
+
+        songs.sort((a, b) => b.date - a.date);
+
+        res.json({songs});
+    });
+}
+
+exports.getTrendingSongs =(req, res)=>{
+    User.find({}).then(result =>{
+        const songs=[];
+
+        for(let i=0;i<result.length;i++){
+            for(let j=0;j<result[i].songs.length;j++){
+                let song=result[i].songs[j];
+                
+                let modified={...song._doc};
+                modified.ownerName=result[i].firstName;
+                songs.push(modified);
+            }
+        }
+
+        songs.sort((a, b) => b.likedBy.length - a.likedBy.length);
+
+        res.json({songs});
+    });
 }
