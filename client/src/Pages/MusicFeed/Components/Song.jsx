@@ -7,6 +7,7 @@ class Song extends Component{
         super();
 
         this.state={
+            songId: '',
             songName: '',
             ownerName: '',
             url: '',
@@ -17,6 +18,7 @@ class Song extends Component{
     componentDidMount(){
         this.setState({}, ()=>{
             this.setState({
+                songId: this.props.songId,
                 songName: this.props.songName,
                 ownerName: this.props.ownerName,
                 numLikes: this.props.numLikes
@@ -34,7 +36,7 @@ class Song extends Component{
     }
 
     render(){
-        const {songName, ownerName, url, numLikes} =this.state;
+        const {songId, songName, ownerName, url, numLikes} =this.state;
         
         return(
             <section className='song container'>
@@ -45,7 +47,9 @@ class Song extends Component{
 
                 <audio controls='controls' src={url} type='audio/mpeg'/> 
 
-                <i className="fa trash">&#xf014;</i>
+                <i className="fa trash" onClick={()=>{this.props.deleteSong(songId)}}>
+                    &#xf014;
+                </i>
 
                 <section className='likesContainer'>
                     <i className="fa like">

@@ -11,6 +11,7 @@ class MyMusic extends Component{
             songs: []
         }
 
+        this.deleteSong=this.deleteSong.bind(this);
         this.handleChange=this.handleChange.bind(this);
     }
 
@@ -25,6 +26,28 @@ class MyMusic extends Component{
             .then(response => {
                 this.setState({songs: response.data.songs});
             });
+        });
+    }
+
+    deleteSong(id){
+        if(!window.confirm("Are you sure you want to delete this post?")){
+            return;
+        }
+
+        const songs=this.state.songs;
+
+        for(let i=0;i<songs.length;i++){
+            if(id===songs[i]._id){
+                songs.splice(i, 1);
+                break;
+            }
+        }
+
+        this.setState({songs: songs});
+
+        axios.post('/deletesong', {id: id}, {headers: {'Content-Type': 'application/json'}})
+        .then(()=>{
+            return;
         });
     }
 
@@ -50,6 +73,7 @@ class MyMusic extends Component{
                 songName={song.originalName}
                 ownerName={song.ownerName}
                 numLikes={song.likedBy.length}
+                deleteSong={this.deleteSong}
             />
         );
 

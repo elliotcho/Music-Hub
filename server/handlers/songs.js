@@ -3,7 +3,6 @@ const {
     Song
 }=require('../dbschemas');
 
-
 exports.loadSong=(path) => (req, res) =>{
     User.find({}).then(result =>{
        let fileName;
@@ -20,12 +19,48 @@ exports.loadSong=(path) => (req, res) =>{
                 }
             }
 
-            if(found){
-                break;
-            }
+            if(found){break;}
        }
 
        res.sendFile(path.join(__dirname, '../', `/audio/${fileName}`));
+    });
+}
+
+exports.deleteSong=(fs, path) => (req, res)=>{
+    User.find({}).then(result =>{
+        let found=false;
+
+        for(let i=0;i<result.length;i++){
+            for(let j=0;j<result[i].songs.length;j++){
+                let song=result[i].songs[j];
+
+                if(song._id==req.body.id){
+                    found=true;
+
+                    const user=result[i];
+                    const idxToRemove=j;
+
+                    fs.unlink(path.join(__dirname, '../', `/audio/${song.storageName}`), (err)=>{
+                        if(err){
+                            console.log(err);
+                        }
+
+                        user.songs.splice(idxToRemove, 1);
+                        
+                        User.updateOne(
+                            {_id: user._id},
+                            {songs: user.songs}
+                        ).then(()=>{});
+                    });
+
+                    break;
+                }
+            }
+
+            if(found){break;}
+        }
+
+        res.json({msg: 'Success'});
     });
 }
 

@@ -48,13 +48,13 @@ class MusicFeed extends Component{
                 </header>
 
                 <ul className='nav nav-tabs'>
-                    <li><a className='nav-link active' data-toggle='tab' href='#trending'>Trending</a></li>
+                    <li><a className='nav-link' data-toggle='tab' href='#trending'>Trending</a></li>
                     <li><a className='nav-link' data-toggle='tab' href='#recent'>Recent</a></li>
-                    <li><a className='nav-link' data-toggle='tab' href='#mymusic'>My Music</a></li>
+                    <li><a className='nav-link active' data-toggle='tab' href='#mymusic'>My Music</a></li>
                 </ul>
 
                 <div className='tab-content'>
-                    <section id='trending' className='tab-pane active'>
+                    <section id='trending' className='tab-pane'>
                         <Trending/>
                     </section>
 
@@ -62,7 +62,7 @@ class MusicFeed extends Component{
                         <Recent/>
                     </section>
 
-                    <section id='mymusic' className='tab-pane'>
+                    <section id='mymusic' className='tab-pane active'>
                        <MyMusic userId={userId}/>
                     </section>
                 </div>

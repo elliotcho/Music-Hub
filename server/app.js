@@ -1,6 +1,7 @@
 //require modules
 const mongoose=require('mongoose');
 const multer=require('multer');
+const fs=require('fs');
 const path=require('path');
 const express=require('express');
 const bodyParser= require('body-parser');
@@ -39,9 +40,10 @@ const {
 }=require('./handlers/users');
 
 const{
+    loadSong,
+    deleteSong,
     getUserSongs,
-    addSong,
-    loadSong
+    addSong
 }=require('./handlers/songs');
 
 app.get('/', (req, res)=>{
@@ -52,6 +54,7 @@ app.post('/signup', signup);
 app.post('/login', login);
 
 app.post('/loadsong', loadSong(path));
+app.post('/deletesong', deleteSong(fs, path))
 app.post('/usersongs', getUserSongs);
 app.post('/addsong', addSong(path, upload));
 
