@@ -109,7 +109,7 @@ class Song extends Component{
 
                 <i className="fa trash" 
                    onClick={()=>{this.props.deleteSong(songId)}}
-                   style={userId==ownerId? {visibility: 'hidden'}: {visibility: 'visible'}}
+                   style={userId!=ownerId? {visibility: 'hidden'}: {visibility: 'visible'}}
                 >
                     &#xf014;
                 </i>

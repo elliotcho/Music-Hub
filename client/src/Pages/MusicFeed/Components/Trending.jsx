@@ -48,7 +48,7 @@ class Trending extends Component{
 
         this.setState({songs});
 
-        axios.post('/deletesong', {id: id}, {headers: {'Content-Type': 'application/json'}})
+        axios.post('/deletesong', {id}, {headers: {'Content-Type': 'application/json'}})
         .then(()=>{});
     }
 
