@@ -50,9 +50,7 @@ class MyMusic extends Component{
         this.setState({songs: songs});
 
         axios.post('/deletesong', {id: id}, {headers: {'Content-Type': 'application/json'}})
-        .then(()=>{
-            return;
-        });
+        .then(()=>{});
     }
 
     handleChange(e){
@@ -70,18 +68,18 @@ class MyMusic extends Component{
     }
 
     render(){
-        const songs=this.state.songs.map(song =>
-            <Song 
-                key={song._id}
-                songId={song._id}
-                userId={this.state.userId}
-                ownerId={song.ownerId}
-                songName={song.originalName}
-                ownerName={song.ownerName}
-                numLikes={song.likedBy.length}
-                deleteSong={this.deleteSong}
-            />
-        );
+        const songs=this.state.songs.map(song =>{
+            return (<Song 
+                        key={song._id}
+                        songId={song._id}
+                        userId={this.state.userId}
+                        ownerId={song.ownerId}
+                        songName={song.originalName}
+                        ownerName={song.ownerName}
+                        numLikes={song.likedBy.length}
+                        deleteSong={this.deleteSong}
+                    />)
+        });
 
         const noSongs=<h1 className='noSongs'>No Music Available</h1>
 
