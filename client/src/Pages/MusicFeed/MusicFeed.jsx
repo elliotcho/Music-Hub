@@ -44,6 +44,14 @@ class MusicFeed extends Component{
         window.location.href='/';
     }
 
+    handleClick(e){
+        const linkId=String(e.target.href).split("/");
+
+        localStorage.setItem('activeTab', linkId[linkId.length-1]);
+        
+        window.location.reload();
+    }
+
     render(){
         const {firstName, lastName, userId}=this.state;
 
@@ -58,9 +66,9 @@ class MusicFeed extends Component{
                 </header>
 
                 <ul className='nav nav-tabs'>
-                    <li><a className='nav-link' data-toggle='tab' href='#trending'>Trending</a></li>
-                    <li><a className='nav-link' data-toggle='tab' href='#recent'>Recent</a></li>
-                    <li><a className='nav-link active' data-toggle='tab' href='#mymusic'>My Music</a></li>
+                    <li><a className='nav-link' data-toggle='tab' href='#trending' onClick={this.handleClick}>Trending</a></li>
+                    <li><a className='nav-link' data-toggle='tab' href='#recent' onClick={this.handleClick}>Recent</a></li>
+                    <li><a className='nav-link active' data-toggle='tab' href='#mymusic' onClick={this.handleClick}>My Music</a></li>
                 </ul>
 
                 <div className='tab-content'>

@@ -32,18 +32,12 @@
           }
         }, true);
 
-        $(document).ready(() =>{
-            $('a[data-toggle="tab"]').on('shown.bs.tab', e => {
-                localStorage.setItem('activeTab', $(e.target).attr('href'));
-            });
-
-            var activeTab = localStorage.getItem('activeTab');
+        $(document).ready(()=>{
+          var activeTab = localStorage.getItem('activeTab');
           
-            if(activeTab!==null){
-              $('.nav-tabs a[href="' + activeTab + '"]').tab('show');
-            }
-
-            $(document).on('click', 'a', () => {setTimeout(()=>{window.location.reload();}, 0.1);});
+          if(activeTab){
+              $('a[href="' + activeTab + '"]').tab('show');
+          }
         });
     </script>
   </body>
