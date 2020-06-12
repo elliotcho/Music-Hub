@@ -68,7 +68,7 @@ class Song extends Component{
 
         let action;
 
-        if(e.target.style.color==='rgb(0, 0, 254)'){
+        if(e.target.style.color==='rgb(0, 0, 254)' || e.target.style.color==='gray'){
             this.setState({likeColor: 'blue', numLikes:numLikes+1});
             action='like';
         }
