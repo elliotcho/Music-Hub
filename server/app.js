@@ -3,6 +3,7 @@ const mongoose=require('mongoose');
 const multer=require('multer');
 const fs=require('fs');
 const path=require('path');
+const cors=require('cors');
 const express=require('express');
 const bodyParser= require('body-parser');
 const app=express();
@@ -30,9 +31,8 @@ const upload=multer({
     limits: {fileSize: 1000000000}
 }).single('audio');
 
-//set up body-parser and static files
 app.use(bodyParser.json());
-app.use(express.static('../client/build'));
+app.use(cors());
 
 const {
     signup,
@@ -49,10 +49,6 @@ const{
     getTrendingSongs,
 }=require('./handlers/songs');
 
-app.get('/', (req, res)=>{
-    res.sendFile('../client/build/index.html');
-});
-
 app.post('/signup', signup);
 app.post('/login', login);
 
@@ -64,4 +60,4 @@ app.post('/usersongs', getUserSongs);
 app.post('/recentsongs', getRecentSongs);
 app.post('/trendingsongs', getTrendingSongs);
 
-app.listen(3000);
+app.listen(5000);

@@ -23,7 +23,7 @@ class MyMusic extends Component{
             const data={userId}
             const config={headers: {'content-type': 'application/json'}};
             
-            axios.post('/usersongs', data, config)
+            axios.post('http://localhost:5000/usersongs', data, config)
             .then(response => {
                 const {songs}= response.data;
 
@@ -50,7 +50,7 @@ class MyMusic extends Component{
 
         this.setState({songs});
 
-        axios.post('/deletesong', {id}, {headers: {'Content-Type': 'application/json'}})
+        axios.post('http://localhost:5000/deletesong', {id}, {headers: {'Content-Type': 'application/json'}})
         .then(()=>{});
     }
 
@@ -65,7 +65,7 @@ class MyMusic extends Component{
 
         const config={headers: {'content-type': 'multipart/form-data'}};
 
-        axios.post('/addsong', formData, config).then(()=>{window.location.reload()});
+        axios.post('http://localhost:5000/addsong', formData, config).then(()=>{window.location.reload()});
     }
 
     render(){

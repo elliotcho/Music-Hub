@@ -31,7 +31,7 @@ class Signup extends Component{
             headers: {'content-type': 'application/json'}
         }
 
-        axios.post('/signup', data, config)
+        axios.post('http://localhost:5000/signup', data, config)
         .then(response => {
             const {msg, _doc}=response.data;
 

@@ -21,7 +21,7 @@ class Recent extends Component{
 
             const config={headers: {'Content-Type': 'application/json'}};
 
-            axios.post('/recentsongs', {}, config)
+            axios.post('http://localhost:5000/recentsongs', {}, config)
             .then(response =>{
                 const {songs} = response.data;
 
@@ -48,7 +48,7 @@ class Recent extends Component{
 
         this.setState({songs});
 
-        axios.post('/deletesong', {id}, {headers: {'Content-Type': 'application/json'}})
+        axios.post('http://localhost:5000/deletesong', {id}, {headers: {'Content-Type': 'application/json'}})
         .then(()=>{});
     }
 

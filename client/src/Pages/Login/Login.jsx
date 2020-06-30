@@ -28,7 +28,7 @@ class Login extends Component{
             headers: {'content-type': 'application/json'}
         }
 
-        axios.post('/login', data, config)
+        axios.post('http://localhost:5000/login', data, config)
         .then(response =>{
             const {msg, _doc}=response.data;
 

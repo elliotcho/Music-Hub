@@ -35,7 +35,7 @@ class Song extends Component{
                 songId, userId, ownerId, songName, ownerName, numLikes
             });
 
-           fetch('/loadsong', {
+           fetch('http://localhost:5000/loadsong', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({id: this.props.songId})
@@ -46,7 +46,7 @@ class Song extends Component{
 
            const config={headers: {'Content-Type': 'application/json'}}
 
-           axios.post('/handlelikes', {action:'check', userId, ownerId, songId}, config)
+           axios.post('http://localhost:5000/handlelikes', {action:'check', userId, ownerId, songId}, config)
            .then(response => {
                 this.setState({likeColor: response.data.color});
            });
@@ -81,7 +81,7 @@ class Song extends Component{
         const data={action, songId, ownerId, userId}
         const config={headers: {'Content-Type': 'application/json'}};
 
-        axios.post('/handlelikes', data, config)
+        axios.post('http://localhost:5000/handlelikes', data, config)
         .then(()=> {});
     }
 
